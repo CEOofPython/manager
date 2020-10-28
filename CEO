@@ -1,0 +1,56 @@
+import PySimpleGUI as sg 
+
+class Studnetform():
+    def __init__ (self):
+
+        # Desing the form
+        self.frame1 =   [
+                            [sg.Text("Students", size=(60,1), justification= "right")],
+                            [sg.Text("Name: ", size=(12,1)), sg.Input (size=(20,1), key= "name" ), sg.Text("", size=(12,1)),
+                             sg.Combo([], size=(20,10,), enable_events=True, key="selectStudent", readonly=True)],
+                            [sg.Text("Surname: ", size=(12,1)), sg.Input(size=(38,1), key="surname")],
+                            [sg.Text("Address: ", size=(12,1)), sg.Input(size=(38,1), key="address")],
+                            [sg.Text("Country: ", size=(12,1)), sg.Input(size=(38,1), key="country")],
+                            [sg.Text("Study: ", size=(12,1)), sg.Input(size=(38,1), key="study")],
+                            [sg.Text("Year: ", size=(12,1)), sg.Input(size=(15,1), key="year")],
+                            [sg.Text("Gender: ", size=(12,1)), sg.Radio("Female", "R", size=(10,1), key="female"), sg.Radio("Male", "R", size=(10,1), key="male")],
+                            [sg.Text("")]                         
+                        ]
+
+        self.layout =   [
+                            [sg.Frame("Student Data", self.frame1, title_color="yellow")],
+                            [sg.Text("")],
+                            [sg.Button("Add", size=(12,1), key="add"), sg.Button("Update", size=(12,1), key="upadate"),
+                             sg.Button("Delete", size=(12,1), key="delete"), sg.Button("Close", size=(12,1), key="close"), 
+                             sg.Button("Populate", size=(12,1), key="populate")],
+                            [sg.Text("")]
+                        
+                        ]
+# Create the Student Form
+        self.window = sg.Window("Student Form").Layout(self.layout).Finalize()   #en korak nazaj ctrl z
+
+# Read the form
+        while True:
+            event, values = self.window.Read()
+            if event =="add":
+                sg.Popup("I cliked on button Add", values)
+            elif event =="selectStudnet":
+                sg.Popup("I cliked on button selectstudent", values)
+            elif event =="populate":
+                sg.Popup("I cliked on button Populate", values)
+            elif event =="update":
+                sg.Popup("I cliked on button Update", values)
+            elif event =="delete":
+                sg.Popup("I cliked on button Delete", values)
+            elif event == "close":
+                break
+
+        self.window.close()
+
+        
+
+
+
+
+if __name__ == "__main__":
+    Studnetform()
